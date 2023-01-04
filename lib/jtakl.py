@@ -4,7 +4,6 @@ import glob
 import os
 import pathlib
 import hashlib
-import shutil
 import time
 import pyopenjtalk
 import numpy as np

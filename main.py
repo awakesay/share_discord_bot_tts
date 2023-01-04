@@ -3,6 +3,7 @@
 import json
 import os
 import platform
+import time
 from typing import Union
 import discord
 
@@ -35,8 +36,6 @@ def run_bot():
     @bot.event
     async def on_message(ctx: discord.ApplicationContext):
         """テキスト投稿"""
-        print(f'ctx.type.name: {ctx.type.name}')    # メッセージタイプ
-
         if ctx.type.name != 'default':
             return  # デフォルトメッセージタイプ以外は早期リターン
 
@@ -50,7 +49,12 @@ def run_bot():
         #jtalk = Jtalk()
         wav_path = jtalk.create_wav(ctx.clean_content)
         # 発話
-        voice_client.play(discord.FFmpegPCMAudio(wav_path))
+        while True:
+            if voice_client.is_playing():
+                time.sleep(0.05)    # ボットが発話中のときは待機
+            else:
+                voice_client.play(discord.FFmpegPCMAudio(wav_path))
+                break
         # 音声ファイル削除
         jtalk.del_old_wav()
 

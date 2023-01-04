@@ -1,4 +1,5 @@
 /__pycache__
+/lib/__pycache__
 
 # ボットのトークン設定ファイル
 # {
@@ -6,7 +7,5 @@
 # }  
 /config/discord_bot.json
 
-
-/lib/__pycache__
-
+# 音声ファイル
 /wav/*
