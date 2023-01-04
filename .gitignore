@@ -6,3 +6,7 @@
 # }  
 /config/discord_bot.json
 
+
+/lib/__pycache__
+
+/wav/*
