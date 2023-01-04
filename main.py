@@ -47,12 +47,12 @@ def run_bot():
             voice_client: discord.VoiceClient = current_status[str(ctx.channel.id)]['voice_client']
 
         # 音声ファイル生成・パス取得
-        jtalk = Jtalk()
+        #jtalk = Jtalk()
         wav_path = jtalk.create_wav(ctx.clean_content)
         # 発話
         voice_client.play(discord.FFmpegPCMAudio(wav_path))
         # 音声ファイル削除
-        jtalk.del_wav()
+        jtalk.del_old_wav()
 
 
     @bot.event
