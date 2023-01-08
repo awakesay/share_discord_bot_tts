@@ -29,7 +29,7 @@ class Jtalk():
         x, sr = pyopenjtalk.tts(text)
         wavfile.write(self.wav_path, sr, x.astype(np.int16))
         return self.wav_path
-
+        
 
     def del_old_wav(self):
         """古いwavファイルを消去します。"""
@@ -54,5 +54,4 @@ def _get_wav_dir() -> pathlib.Path:
 
 if __name__ == '__main__':
     """test"""
-    jtalk = Jtalk()
-    jtalk.del_old_wav()
+    pass
