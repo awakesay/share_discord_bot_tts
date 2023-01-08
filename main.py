@@ -16,9 +16,9 @@ def run_bot():
     jtalk = Jtalk()     # Jtalkインスタンス
     current_status = {} # テキストチャンネルとボイスクライアントの紐付け
     # = {
-    #   "str: {text_channel}": {
-    #       "voice_client": object: voice_client,
-    #       "caller": object: ctx.author
+    #   "{text channel id}": {
+    #       "voice_client": {voice_client},
+    #       "caller": {ctx.author}
     # }
 
     intents = discord.Intents.all()
@@ -53,7 +53,10 @@ def run_bot():
             if voice_client.is_playing():
                 time.sleep(0.05)    # ボットが発話中のときは待機
             else:
-                voice_client.play(discord.FFmpegPCMAudio(wav_path))
+                try:
+                    voice_client.play(discord.FFmpegPCMAudio(wav_path))
+                except Exception as e:
+                    raise e   
                 break
         # 音声ファイル削除
         jtalk.del_old_wav()
